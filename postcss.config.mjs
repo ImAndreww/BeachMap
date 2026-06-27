@@ -1,6 +1,8 @@
-module.exports = {
+jsconst config = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
   },
 };
+
+export default config;
