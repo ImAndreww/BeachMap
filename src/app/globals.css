@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -23,19 +22,16 @@
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
   color: var(--text-dark);
   background: var(--sand-light);
   min-height: 100vh;
 }
 
-/* Scrollbar custom */
 ::-webkit-scrollbar       { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--ocean-pale); }
 ::-webkit-scrollbar-thumb { background: var(--ocean-light); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--ocean-mid); }
 
-/* Focus visible accesibil */
 :focus-visible {
   outline: 2px solid var(--ocean-light);
   outline-offset: 2px;
