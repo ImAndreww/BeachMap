@@ -34,7 +34,7 @@ export default function BeachMap({ apiKey, centerLat, centerLng, beaches }: Prop
 
   useEffect(() => {
     if (!apiKey || apiKey.includes('cheia')) {
-      setLoaded(true); // show placeholder
+      setLoaded(true);
       return;
     }
 
@@ -62,7 +62,10 @@ export default function BeachMap({ apiKey, centerLat, centerLng, beaches }: Prop
   function initMap() {
     if (!mapRef.current) return;
 
-    const map = new google.maps.Map(mapRef.current, {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const g = window.google as any;
+
+    const map = new g.maps.Map(mapRef.current, {
       center: { lat: centerLat, lng: centerLng },
       zoom: 12,
       mapTypeId: 'roadmap',
@@ -79,12 +82,12 @@ export default function BeachMap({ apiKey, centerLat, centerLng, beaches }: Prop
     });
 
     beaches.forEach((beach) => {
-      const marker = new google.maps.Marker({
+      const marker = new g.maps.Marker({
         position: { lat: beach.latitude, lng: beach.longitude },
         map,
         title: beach.name,
         icon: {
-          path: google.maps.SymbolPath.CIRCLE,
+          path: g.maps.SymbolPath.CIRCLE,
           scale: 12,
           fillColor: beach.blue_flag ? '#1565C0' : '#FF8F00',
           fillOpacity: 1,
@@ -93,7 +96,7 @@ export default function BeachMap({ apiKey, centerLat, centerLng, beaches }: Prop
         },
       });
 
-      const infoWindow = new google.maps.InfoWindow({
+      const infoWindow = new g.maps.InfoWindow({
         content: `
           <div style="font-family: Inter, sans-serif; padding: 4px; min-width: 160px;">
             <strong style="font-size: 14px; color: #1a2332;">${beach.name}</strong>
@@ -120,7 +123,6 @@ export default function BeachMap({ apiKey, centerLat, centerLng, beaches }: Prop
     setLoaded(true);
   }
 
-  // Fără cheie API — arată placeholder informativ
   if (!apiKey || apiKey.includes('cheia')) {
     return (
       <div className="h-96 bg-gradient-to-br from-cyan-100 to-blue-200 flex flex-col items-center justify-center gap-3 text-gray-500">
