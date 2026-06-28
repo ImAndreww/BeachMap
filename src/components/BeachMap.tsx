@@ -21,7 +21,8 @@ type Props = {
 
 declare global {
   interface Window {
-    google: typeof google;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    google: any;
     initBeachMap: () => void;
   }
 }
